@@ -19,3 +19,5 @@ $ npm run dev
 ## Web Server
 
 View the website at: http://localhost:3000
+
+View the swagger api doc at: https://book-web-express.vercel.app
