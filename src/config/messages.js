@@ -2,6 +2,7 @@ const messages = {
   auth: {
     invalid: 'Invalid email or password',
     unauthorized: 'Unauthorized user',
+    success: "Welcome back! You're now securely logged in",
   },
   books: {
     added: 'Book create successfully',

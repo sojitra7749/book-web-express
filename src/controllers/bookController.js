@@ -3,9 +3,9 @@ const { messages } = require('../config/messages');
 
 const bookService = require('../services/bookService');
 
-const getAllBooks = async (_req, res, next) => {
+const getAllBooks = async (req, res, next) => {
   try {
-    const books = await bookService.getAllBooks();
+    const books = await bookService.getAllBooks(req);
     res.sendResponse(books);
   } catch (error) {
     next(error);

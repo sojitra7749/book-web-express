@@ -1,3 +1,4 @@
+const { messages } = require('../config/messages');
 const authService = require('../services/authService');
 
 const login = async (req, res, next) => {
@@ -15,7 +16,7 @@ const login = async (req, res, next) => {
   */
   try {
     const user = await authService.login(req, res);
-    res.sendResponse(user);
+    res.sendResponse(user, messages.auth.success);
   } catch (error) {
     next(error);
   }

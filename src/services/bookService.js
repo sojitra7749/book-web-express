@@ -1,8 +1,18 @@
 const Book = require('../models/bookModel');
 
-const getAllBooks = async () => {
-  const books = await Book.find().sort({ $natural: -1 });
-  return books;
+const getAllBooks = async (req) => {
+  const { page = 1, pageSize = 10 } = req.query;
+  const [books, totalRecords] = await Promise.all([
+    Book.find()
+      .sort({ $natural: -1 })
+      .skip((page - 1) * pageSize)
+      .limit(pageSize),
+    Book.countDocuments(),
+  ]);
+  return {
+    records: books,
+    totalRecords,
+  };
 };
 
 const getOneBook = async (bookId) => {
