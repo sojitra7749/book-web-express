@@ -3,6 +3,7 @@ const express = require('express');
 
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const responseFormatter = require('./middlewares/responseFormatter');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -14,7 +15,6 @@ const swaggerSetupOptions = require('./config/swagger');
 const router = require('./router');
 
 const limiter = require('./middlewares/rateLimit');
-const cors = require('./middlewares/cors');
 
 const app = express();
 connection();
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(responseFormatter);
 app.use(limiter);
 
-app.use(cors);
+app.use(cors());
 app.use('/api', router);
 app.use(
   '/',
