@@ -4,6 +4,7 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const helmet = require('helmet');
 const responseFormatter = require('./middlewares/responseFormatter');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -26,6 +27,9 @@ app.use(express.json());
 
 app.use(responseFormatter);
 app.use(limiter);
+
+app.use(helmet());
+app.disable('x-powered-by');
 
 app.use(cors());
 app.use('/api', router);
